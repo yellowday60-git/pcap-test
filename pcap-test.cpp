@@ -62,8 +62,6 @@ int main(int argc, char* argv[]) {
         printf("=== ETHERNET HEADER ===\n");
         printf("src mac : %02X:%02X:%02X:%02X:%02X:%02X \n",eth->ether_shost[0], eth->ether_shost[1], eth->ether_shost[2], eth->ether_shost[3], eth->ether_shost[4], eth->ether_shost[5]);
         printf("dst mac : %02X:%02X:%02X:%02X:%02X:%02X \n",eth->ether_dhost[0], eth->ether_dhost[1], eth->ether_dhost[2], eth->ether_dhost[3], eth->ether_dhost[4], eth->ether_dhost[5]);
-
-
         
         //ipv4
         printf("===   IPV4 HEADER   ===\n");
@@ -76,8 +74,8 @@ int main(int argc, char* argv[]) {
 		tcphdr * tcp = (tcphdr *)(packet + ETH_HLEN + IP_HLEN);
 
 		printf("===   TCP  HEADER   ===\n");
-        printf("src port : %d \n",tcp->th_sport);
-        printf("dst port : %d \n",tcp->th_dport);
+        printf("src port : %u \n",ntohs(tcp->th_sport));
+        printf("dst port : %u \n",ntohs(tcp->th_dport));
 
 		//payload
 		uint32_t TCP_HLEN = tcp->th_off * 4;
@@ -97,7 +95,7 @@ int main(int argc, char* argv[]) {
 				printf("%#X ", payload[i]);
 			}
 		}
-		
+
 		printf("\n\n");
 
 	}
