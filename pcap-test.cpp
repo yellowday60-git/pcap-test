@@ -83,11 +83,11 @@ int main(int argc, char* argv[]) {
 
 		uint32_t packet_len = ntohs(ipv4->ip_len) - IP_HLEN - TCP_HLEN;
 		packet_len = (0 >= packet_len ? 0 : packet_len);
-		packet_len = (packet_len >= 8 ? 8 : packet_len);
 
 		printf("===  PAYLOAD INFO  ===\n");
 		printf("len : %d\n",packet_len);
 
+		packet_len = (packet_len >= 8 ? 8 : packet_len);
 		if(packet_len > 0){
 			printf("payload (8 bytes): ");
 
